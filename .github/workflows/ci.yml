@@ -1,0 +1,23 @@
+# F8 — CI mínimo. Não instala supabase CLI só para fingir lint.
+# Se o binário não estiver no runner, o job faz skip explícito.
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  sql:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: supabase db lint (skip se CLI ausente)
+        run: |
+          if ! command -v supabase >/dev/null 2>&1; then
+            echo "supabase CLI not in PATH — skip (F8, not a fake pass of lint)"
+            echo "Install the CLI in the repo/runner to enable db lint."
+            exit 0
+          fi
+          supabase db lint
