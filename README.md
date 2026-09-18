@@ -5,18 +5,19 @@ Backend do MVP **NadaAqui** (rede social de locais para nadar — BR).
 ## Stack
 - **Supabase** (Postgres + PostGIS + Auth + RLS + Realtime)
 - Cidade piloto: **São Paulo** (`city_slug = sao-paulo`)
-- Check-in: raio **150 m**, TTL **3 h** (via `app_config` / `GET /v1/config`)
+- Check-in: raio **150 m**, TTL **3 h** (via `app_config` / `get_remote_config()`)
 
 ## Source of truth
-- **OpenAPI:** [`openapi/nadaaqui-v1.yaml`](openapi/nadaaqui-v1.yaml) — o front só consome cópia/docs.
-- **SQL:** [`supabase/migrations/`](supabase/migrations/) + [`supabase/seed/`](supabase/seed/)
+- **Live (app):** RPCs em [`docs/contrato-rpc.md`](docs/contrato-rpc.md) + SQL em [`supabase/migrations/`](supabase/migrations/)
+- **Mock / contrato REST:** [`openapi/nadaaqui-v1.yaml`](openapi/nadaaqui-v1.yaml) — só WireMock. Se divergir da RPC, **a RPC ganha**.
+- O mobile **não** deve manter cópia do YAML.
 
 ## Layout
 ```
-openapi/          Contratos REST (Sprint 1+)
-supabase/         Migrations, seed SP, README de apply
-mock/             WireMock + Mockoon (sem .jar/.runtime)
-docs/             Refinamento técnico e estimativas
+openapi/          Contrato REST do mock
+supabase/         Migrations, seed SP, testes SQL, README de apply
+mock/             WireMock + Mockoon
+docs/             Contrato RPC, refinamento, plano de gaps
 ```
 
 ## Quick start (mock)
@@ -31,9 +32,7 @@ Base URL: `http://localhost:8080/v1`
 Ver [`supabase/README.md`](supabase/README.md).
 
 ## Docs
+- [Contrato RPC](docs/contrato-rpc.md)
 - [Refinamento técnico](docs/refinamento-tecnico-backend.md)
 - [Estimativas por HU](docs/estimativas-backend-hu.md)
 - [Mock QA](mock/README.md)
-
-## Time
-Repo do agente **Backend**. Contrato OpenAPI é a fonte da verdade; mudanças de API entram aqui primeiro.
