@@ -1,0 +1,15 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  sql-present:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: migrations exist
+        run: |
+          test -f supabase/migrations/20260917220100_schema.sql
+          test -f supabase/migrations/20260918020000_harden_rls.sql
+          test -f docs/contrato-rpc.md
