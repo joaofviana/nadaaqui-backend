@@ -32,3 +32,13 @@ Base URL app: `http://localhost:8080/v1`
 - `X-Mock-Scenario` stubs: priority **1**
 - `OUT_OF_RANGE` (place OUT): priority **2**
 - Happy path (place IN): priority **10** + header `X-Mock-Scenario` **absent**
+
+## Sem Docker (java -jar)
+```bash
+# na raiz do repo
+curl -fsSL -o wiremock.jar \
+  https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.9.1/wiremock-standalone-3.9.1.jar
+java -jar wiremock.jar --port 8080 --root-dir mock/wiremock
+```
+Base URL: `http://localhost:8080/v1`  
+(`wiremock.jar` está no `.gitignore` — não commitar.)

@@ -3,7 +3,8 @@ info:
   title: NadaAqui API
   version: 1.0.0
   description: |
-    Contratos Sprint 1+ (Places, Check-in, Config, Presence, Auth).
+    Contratos Sprint 1+ e pós-S1 (Profiles HU-14/15/16).
+    Contratos Sprint 1: Places, Check-in, Config, Presence, Auth.
     Backend recomendado: Supabase (RPCs + Edge Functions expostos como REST).
     Raio de check-in e max-age de GPS vêm de GET /v1/config (não hardcode no app).
 servers:
@@ -17,6 +18,7 @@ tags:
   - name: Places
   - name: CheckIns
   - name: Presence
+  - name: Profiles
 paths:
   /config:
     get:
@@ -291,6 +293,96 @@ paths:
                 $ref: '#/components/schemas/PresenceResponse'
         '404':
           $ref: '#/components/responses/Error'
+  /me/profile:
+    get:
+      tags: [Profiles]
+      operationId: getMyProfile
+      summary: Meu perfil nadador (HU-14)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Profile' }
+        '401':
+          $ref: '#/components/responses/Error'
+    patch:
+      tags: [Profiles]
+      operationId: updateMyProfile
+      summary: Editar / onboarding perfil (HU-15)
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UpdateProfileRequest' }
+      responses:
+        '200':
+          description: Perfil atualizado (ou error CONFLICT de handle)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Profile'
+                  - $ref: '#/components/schemas/ErrorBody'
+        '401':
+          $ref: '#/components/responses/Error'
+  /profiles/{handle}:
+    get:
+      tags: [Profiles]
+      operationId: getPublicProfile
+      summary: Perfil de outro (HU-16) — omite campos privados
+      security: []
+      parameters:
+        - name: handle
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Profile' }
+        '404':
+          $ref: '#/components/responses/Error'
+  /profiles/{userId}/check-ins:
+    get:
+      tags: [Profiles]
+      operationId: listProfilePublicCheckIns
+      summary: Check-ins públicos no perfil (não feed)
+      security: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20 }
+        - name: offset
+          in: query
+          schema: { type: integer, default: 0 }
+      responses:
+        '200':
+          description: Lista
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string, format: uuid }
+                        placeId: { type: string, format: uuid }
+                        placeName: { type: string }
+                        startedAt: { type: string, format: date-time }
+                        status: { type: string }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -385,10 +477,77 @@ components:
         id: { type: string, format: uuid }
         email: { type: string, format: email }
         displayName: { type: string }
+        handle: { type: string, nullable: true }
         avatarUrl: { type: string, nullable: true }
         showInPresence:
           type: boolean
           description: Toggle HU-07; default true
+    SwimmingLevel:
+      type: string
+      enum: [beginner, intermediate, advanced]
+      description: Iniciante | Intermediário | Avançado
+    SwimmingStyle:
+      type: string
+      enum: [crawl, backstroke, breaststroke, butterfly]
+    ProfilePrivacy:
+      type: object
+      required: [showAge, showMeters, showLevelStyles, showSwimmingSince]
+      properties:
+        showAge: { type: boolean, default: true }
+        showMeters: { type: boolean, default: true }
+        showLevelStyles: { type: boolean, default: true }
+        showSwimmingSince: { type: boolean, default: true }
+    ProfileStats:
+      type: object
+      required: [checkInsCount, placesCount]
+      properties:
+        checkInsCount: { type: integer }
+        placesCount: { type: integer }
+    Profile:
+      type: object
+      required: [id, displayName, stats, isSelf]
+      properties:
+        id: { type: string, format: uuid }
+        displayName: { type: string }
+        handle: { type: string, nullable: true }
+        avatarUrl: { type: string, nullable: true }
+        bio: { type: string, nullable: true }
+        age: { type: integer, nullable: true, minimum: 1, maximum: 120 }
+        metersDeclared:
+          type: integer
+          nullable: true
+          minimum: 0
+          description: Declarados; null = não informado (não usar 0 como empty)
+        swimmingSince:
+          type: string
+          nullable: true
+          description: 'Texto declarado: desde 2019 / há 5 anos'
+        level: { $ref: '#/components/schemas/SwimmingLevel', nullable: true }
+        styles:
+          type: array
+          items: { $ref: '#/components/schemas/SwimmingStyle' }
+        showInPresence: { type: boolean }
+        privacy:
+          $ref: '#/components/schemas/ProfilePrivacy'
+          description: Só no perfil próprio (isSelf)
+        stats: { $ref: '#/components/schemas/ProfileStats' }
+        isSelf: { type: boolean }
+    UpdateProfileRequest:
+      type: object
+      properties:
+        displayName: { type: string }
+        handle: { type: string }
+        avatarUrl: { type: string, nullable: true }
+        bio: { type: string, nullable: true }
+        age: { type: integer, nullable: true }
+        metersDeclared: { type: integer, nullable: true, minimum: 0 }
+        swimmingSince: { type: string, nullable: true }
+        level: { $ref: '#/components/schemas/SwimmingLevel', nullable: true }
+        styles:
+          type: array
+          items: { $ref: '#/components/schemas/SwimmingStyle' }
+        showInPresence: { type: boolean }
+        privacy: { $ref: '#/components/schemas/ProfilePrivacy' }
     PriceType:
       type: string
       enum: [free, paid]

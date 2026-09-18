@@ -26,3 +26,5 @@ supabase/.branches/
 node_modules/
 dist/
 coverage/
+
+wiremock.jar
