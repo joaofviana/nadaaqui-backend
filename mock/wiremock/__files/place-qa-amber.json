@@ -1,0 +1,19 @@
+{
+  "id": "33333333-3333-3333-3333-333333333333",
+  "name": "Piscina QA Âmbar (~220 m)",
+  "placeType": "pool",
+  "lat": -23.54852,
+  "lng": -46.6333,
+  "priceType": "paid",
+  "totalPass": "unknown",
+  "distanceMeters": null,
+  "thumbnailUrl": null,
+  "address": "QA smoke — ~220 m do GPS mock (-23.5505,-46.6333)",
+  "description": "Place sintético só pra chip âmbar (150 < d ≤ 300). Não é local real.",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

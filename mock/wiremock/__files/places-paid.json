@@ -65,9 +65,20 @@
       "totalPass": "no",
       "distanceMeters": null,
       "thumbnailUrl": "https://arenasoulbeach.com.br/img/arena-soul-beach-esporte-comida-servico-3.jpg"
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "name": "Piscina QA Âmbar (~220 m)",
+      "placeType": "pool",
+      "lat": -23.54852,
+      "lng": -46.6333,
+      "priceType": "paid",
+      "totalPass": "unknown",
+      "distanceMeters": 220,
+      "thumbnailUrl": null
     }
   ],
-  "total": 6,
+  "total": 7,
   "limit": 50,
   "offset": 0
 }
