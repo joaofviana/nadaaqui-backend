@@ -3,6 +3,10 @@
 -- Clube Ipiranga: NÃO publicar até confirmar endereço SP (site citado é RS).
 begin;
 
+-- Po 2026-09-17: remover Clube Ipiranga (é RS, não SP)
+delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111104';
+
+
 insert into public.places (
   id, name, place_type, description, address, location,
   price_type, total_pass, photos, city_slug, is_published
@@ -78,36 +82,6 @@ insert into public.places (
   ARRAY["https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Museu_do_Ipiranga_2022.jpg/1280px-Museu_do_Ipiranga_2022.jpg"]::text[],
   'sao-paulo',
   true
-)
-on conflict (id) do update set
-  name = excluded.name,
-  place_type = excluded.place_type,
-  description = excluded.description,
-  address = excluded.address,
-  location = excluded.location,
-  price_type = excluded.price_type,
-  total_pass = excluded.total_pass,
-  photos = excluded.photos,
-  city_slug = excluded.city_slug,
-  is_published = excluded.is_published,
-  updated_at = now();
-
-
-insert into public.places (
-  id, name, place_type, description, address, location,
-  price_type, total_pass, photos, city_slug, is_published
-) values (
-  'aaaaaaaa-1111-4111-8111-111111111104',
-  'Clube Ipiranga (PENDENTE)',
-  'club',
-  'REVISÃO PO: site citado (ipirangafw.com.br) NÃO é SP. Sem endereço oficial SP encontrado. is_published=false até confirmar ou remover.',
-  'ENDEREÇO NÃO CONFIRMADO EM SP — ipirangafw.com.br é Frederico Westphalen/RS (Rua Piratini, 890)',
-  ST_SetSRID(ST_MakePoint(-46.612, -23.5905), 4326)::geography,
-  'paid',
-  'unknown',
-  ARRAY["https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Parque_da_Independ%C3%AAncia.jpg/1280px-Parque_da_Independ%C3%AAncia.jpg"]::text[],
-  'sao-paulo',
-  false
 )
 on conflict (id) do update set
   name = excluded.name,
