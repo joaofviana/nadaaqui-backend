@@ -3,13 +3,18 @@ info:
   title: NadaAqui API
   version: 1.0.0
   description: |
-    Contratos Sprint 1+ e pós-S1 (Profiles HU-14/15/16).
+    REST `/v1` usado pelo **WireMock** (fallback de dev).
+
+    App live **não** consome estes paths — consome RPCs PostgREST.
+    Contrato canônico: `docs/contrato-rpc.md`.
+    Se este YAML divergir das RPCs em `supabase/migrations/`, a **RPC ganha**.
+
     Contratos Sprint 1: Places, Check-in, Config, Presence, Auth.
-    Backend recomendado: Supabase (RPCs + Edge Functions expostos como REST).
-    Raio de check-in e max-age de GPS vêm de GET /v1/config (não hardcode no app).
+    Raio de check-in e max-age de GPS vêm de `get_remote_config` / GET /v1/config
+    (não hardcode no app).
 servers:
   - url: https://api.nadaaqui.local/v1
-    description: Produção (placeholder)
+    description: Produção (placeholder — live real é Supabase /rpc)
   - url: http://localhost:8080/v1
     description: Mock local (WireMock/Mockoon)
 tags:
