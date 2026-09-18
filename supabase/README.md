@@ -36,3 +36,10 @@ Agendar `select public.expire_check_ins();` a cada 5–10 min (pg_cron ou Edge s
 
 ## Seed QA
 Mesmos UUIDs do mock. GPS teste: `-23.5505, -46.6333`.
+
+## Seed Ipiranga
+```bash
+psql "$DATABASE_URL" -f supabase/seed/seed_sao_paulo.sql
+psql "$DATABASE_URL" -f supabase/seed/seed_ipiranga_piscinas.sql
+```
+Ver `docs/seed-ipiranga-notas.md` (Clube Ipiranga pendente; Sesc fechado p/ manutenção).

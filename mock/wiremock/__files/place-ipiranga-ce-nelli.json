@@ -1,0 +1,21 @@
+{
+  "id": "aaaaaaaa-1111-4111-8111-111111111103",
+  "name": "CE Ipiranga — Balneário Carlos Joel Nelli",
+  "placeType": "pool",
+  "lat": -23.5889,
+  "lng": -46.6098,
+  "priceType": "free",
+  "totalPass": "no",
+  "distanceMeters": null,
+  "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Museu_do_Ipiranga_2022.jpg/1280px-Museu_do_Ipiranga_2022.jpg",
+  "address": "Praça Nami Jafet, 45 - Ipiranga, São Paulo - SP, 04205-050",
+  "description": "Piscina pública SEME (formato feijão, climatizada). Carteirinha gratuita. Ter–Dom 8–12 e 13–17. Foto: placeholder Wikimedia.",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Museu_do_Ipiranga_2022.jpg/1280px-Museu_do_Ipiranga_2022.jpg"
+  ],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

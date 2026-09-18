@@ -1,0 +1,80 @@
+[
+  {
+    "id": "ipiranga-cay",
+    "name": "Clube Atlético Ypiranga (CAY)",
+    "address": "Rua do Manifesto, 475 - Ipiranga, São Paulo - SP, 04209-000",
+    "lat": -23.5855,
+    "lng": -46.6095,
+    "placeType": "club",
+    "priceType": "paid",
+    "totalPass": "unknown",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Parque_da_Independ%C3%AAncia.jpg/1280px-Parque_da_Independ%C3%AAncia.jpg",
+    "photoSource": "Wikimedia Commons (área Ipiranga/Parque Independência — placeholder até Places Photo API)",
+    "notes": "Complexo aquático aquecido; piscinas adulto/infantil. Sócios."
+  },
+  {
+    "id": "ipiranga-sesc",
+    "name": "Sesc Ipiranga — Piscina",
+    "address": "Rua Bom Pastor, 822 - Ipiranga, São Paulo - SP",
+    "lat": -23.5852,
+    "lng": -46.6108,
+    "placeType": "sesc",
+    "priceType": "paid",
+    "totalPass": "no",
+    "photoUrl": "https://www.sescsp.org.br/wp-content/uploads/2022/07/sesc-ipiranga-fachada.jpg",
+    "photoSource": "Sesc SP (verificar hotlink; preferir Places Photo API)",
+    "notes": "Piscina coberta aquecida; exige Credencial Plena. Em 2026 houve fechamento temporário p/ manutenção — checar status."
+  },
+  {
+    "id": "ipiranga-ce-nelli",
+    "name": "CE Ipiranga — Balneário Carlos Joel Nelli",
+    "address": "Praça Nami Jafet, 45 - Ipiranga, São Paulo - SP, 04205-050",
+    "lat": -23.5889,
+    "lng": -46.6098,
+    "placeType": "public",
+    "priceType": "free",
+    "totalPass": "no",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Museu_do_Ipiranga_2022.jpg/1280px-Museu_do_Ipiranga_2022.jpg",
+    "photoSource": "Wikimedia Commons (região Ipiranga — placeholder até foto real da piscina via Maps/Places)",
+    "notes": "Piscina pública SEME (formato feijão, climatizada). Carteirinha gratuita. Ter–Dom 8–12 e 13–17."
+  },
+  {
+    "id": "ipiranga-clube-ipiranga",
+    "name": "Clube Ipiranga",
+    "address": "Ipiranga, São Paulo - SP (confirmar endereço oficial no site ipirangafw.com.br)",
+    "lat": -23.5905,
+    "lng": -46.612,
+    "placeType": "club",
+    "priceType": "paid",
+    "totalPass": "unknown",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Parque_da_Independ%C3%AAncia.jpg/1280px-Parque_da_Independ%C3%AAncia.jpg",
+    "photoSource": "Wikimedia placeholder — trocar por foto Maps/Places",
+    "notes": "Piscinas interna e externa; natação/hidro p/ sócios."
+  },
+  {
+    "id": "ipiranga-acqua-raciness",
+    "name": "Academia Acqua Raciness",
+    "address": "Rua Agostinho Gomes, 3197 - Ipiranga, São Paulo - SP",
+    "lat": -23.5928,
+    "lng": -46.6015,
+    "placeType": "gym",
+    "priceType": "paid",
+    "totalPass": "unknown",
+    "photoUrl": "https://images.unsplash.com/photo-1519315901367-f34ff2716bc8?w=1200",
+    "photoSource": "Unsplash (piscina genérica) — trocar por Places Photo do estabelecimento",
+    "notes": "Piscina, hidro, natação."
+  },
+  {
+    "id": "ipiranga-training-up",
+    "name": "Training Up Academia",
+    "address": "Rua Agostinho Gomes, 1928 - Ipiranga, São Paulo - SP",
+    "lat": -23.591,
+    "lng": -46.6055,
+    "placeType": "gym",
+    "priceType": "paid",
+    "totalPass": "unknown",
+    "photoUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200",
+    "photoSource": "Unsplash (piscina genérica) — trocar por Places Photo",
+    "notes": "Piscina semiolímpica / natação (confirmar oferta atual)."
+  }
+]

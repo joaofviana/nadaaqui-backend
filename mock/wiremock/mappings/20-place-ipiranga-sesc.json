@@ -1,0 +1,14 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/places/aaaaaaaa-1111-4111-8111-111111111102"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "place-ipiranga-sesc.json"
+  }
+}

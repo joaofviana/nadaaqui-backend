@@ -10,9 +10,53 @@
       "totalPass": "yes",
       "distanceMeters": 80,
       "thumbnailUrl": null
+    },
+    {
+      "id": "aaaaaaaa-1111-4111-8111-111111111101",
+      "name": "Clube Atlético Ypiranga (CAY)",
+      "placeType": "club",
+      "lat": -23.5855,
+      "lng": -46.6095,
+      "priceType": "paid",
+      "totalPass": "unknown",
+      "distanceMeters": null,
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Parque_da_Independ%C3%AAncia.jpg/1280px-Parque_da_Independ%C3%AAncia.jpg"
+    },
+    {
+      "id": "aaaaaaaa-1111-4111-8111-111111111102",
+      "name": "Sesc Ipiranga — Piscina",
+      "placeType": "other",
+      "lat": -23.5852,
+      "lng": -46.6108,
+      "priceType": "paid",
+      "totalPass": "no",
+      "distanceMeters": null,
+      "thumbnailUrl": "https://www.sescsp.org.br/wp-content/uploads/2022/07/sesc-ipiranga-fachada.jpg"
+    },
+    {
+      "id": "aaaaaaaa-1111-4111-8111-111111111105",
+      "name": "Academia Acqua Raciness",
+      "placeType": "other",
+      "lat": -23.5928,
+      "lng": -46.6015,
+      "priceType": "paid",
+      "totalPass": "unknown",
+      "distanceMeters": null,
+      "thumbnailUrl": "https://images.unsplash.com/photo-1519315901367-f34ff2716bc8?w=1200"
+    },
+    {
+      "id": "aaaaaaaa-1111-4111-8111-111111111106",
+      "name": "Training Up Academia",
+      "placeType": "other",
+      "lat": -23.591,
+      "lng": -46.6055,
+      "priceType": "paid",
+      "totalPass": "unknown",
+      "distanceMeters": null,
+      "thumbnailUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200"
     }
   ],
-  "total": 1,
+  "total": 5,
   "limit": 50,
   "offset": 0
 }

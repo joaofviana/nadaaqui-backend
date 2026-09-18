@@ -1,0 +1,21 @@
+{
+  "id": "aaaaaaaa-1111-4111-8111-111111111106",
+  "name": "Training Up Academia",
+  "placeType": "other",
+  "lat": -23.591,
+  "lng": -46.6055,
+  "priceType": "paid",
+  "totalPass": "unknown",
+  "distanceMeters": null,
+  "thumbnailUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200",
+  "address": "Rua Agostinho Gomes, 1928 - Ipiranga, São Paulo - SP",
+  "description": "Piscina semiolímpica / natação (confirmar oferta atual). Foto: Unsplash genérica — trocar por Places Photo.",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [
+    "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200"
+  ],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}
