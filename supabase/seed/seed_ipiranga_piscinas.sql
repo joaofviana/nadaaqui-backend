@@ -1,15 +1,11 @@
--- Seed Ipiranga v2 (Po curadoria) — 7 publicados + limpeza v1
--- Não publicar: Dentro D'Água. Opcional entorno (Run2Fit, Acqua Mooca) fora deste seed.
+-- Seed Ipiranga v2
 begin;
-
--- Remove seed Ipiranga v1 ids
 delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111101';
 delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111102';
 delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111103';
 delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111104';
 delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111105';
 delete from public.places where id = 'aaaaaaaa-1111-4111-8111-111111111106';
-
 
 insert into public.places (
   id, name, place_type, description, address, location,
@@ -23,7 +19,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.6058969, -23.5802452), 4326)::geography,
   'free',
   'no',
-  ARRAY["https://expresso.estadao.com.br/sao-paulo/wp-content/uploads/2025/06/20250616_Centro_Espirtivo_Ipiranga_SB-21-scaled.jpg"]::text[],
+  ARRAY['https://expresso.estadao.com.br/sao-paulo/wp-content/uploads/2025/06/20250616_Centro_Espirtivo_Ipiranga_SB-21-scaled.jpg']::text[],
   'sao-paulo',
   true
 )
@@ -53,7 +49,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.6080109, -23.5841383), 4326)::geography,
   'paid',
   'no',
-  ARRAY["https://www.sescsp.org.br/wp-content/uploads/2023/11/Piscina-do-Sesc-Ipiranga-Divulgacao.png"]::text[],
+  ARRAY['https://www.sescsp.org.br/wp-content/uploads/2023/11/Piscina-do-Sesc-Ipiranga-Divulgacao.png']::text[],
   'sao-paulo',
   true
 )
@@ -83,7 +79,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.6020269, -23.5767225), 4326)::geography,
   'paid',
   'unknown',
-  ARRAY["https://cay.com.br/wp-content/uploads/2026/07/DSC0060-1-scaled.jpg"]::text[],
+  ARRAY['https://cay.com.br/wp-content/uploads/2026/07/DSC0060-1-scaled.jpg']::text[],
   'sao-paulo',
   true
 )
@@ -113,7 +109,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.6086734, -23.5958421), 4326)::geography,
   'paid',
   'unknown',
-  ARRAY["https://www.aquaschool.com.br/wp-content/uploads/2025/04/estrutura2.jpg"]::text[],
+  ARRAY['https://www.aquaschool.com.br/wp-content/uploads/2025/04/estrutura2.jpg']::text[],
   'sao-paulo',
   true
 )
@@ -143,7 +139,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.6041896, -23.5874195), 4326)::geography,
   'paid',
   'unknown',
-  '{}'::text[],
+  ARRAY[]::text[],
   'sao-paulo',
   true
 )
@@ -173,7 +169,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.6112691, -23.5713643), 4326)::geography,
   'paid',
   'no',
-  ARRAY["https://arenasoulbeach.com.br/img/arena-soul-beach-esporte-comida-servico-3.jpg"]::text[],
+  ARRAY['https://arenasoulbeach.com.br/img/arena-soul-beach-esporte-comida-servico-3.jpg']::text[],
   'sao-paulo',
   true
 )
@@ -203,7 +199,7 @@ insert into public.places (
   ST_SetSRID(ST_MakePoint(-46.5917089, -23.5989841), 4326)::geography,
   'free',
   'no',
-  '{}'::text[],
+  ARRAY[]::text[],
   'sao-paulo',
   true
 )
