@@ -1,0 +1,21 @@
+{
+  "id": "63657e49-38cc-4622-af36-0e3809d41d21",
+  "name": "Clube Atlético Ypiranga (CAY)",
+  "placeType": "club",
+  "lat": -23.5767225,
+  "lng": -46.6020269,
+  "priceType": "paid",
+  "totalPass": "unknown",
+  "distanceMeters": null,
+  "thumbnailUrl": "https://cay.com.br/wp-content/uploads/2026/07/DSC0060-1-scaled.jpg",
+  "address": "Rua do Manifesto, 475 – Ipiranga, São Paulo – SP, 04209-000",
+  "description": "Clube histórico (1906) com piscinas e aulas de natação (sócios e alunos não-sócios com matrícula). Contato natação: (11) 3386-3386 ramal 3392. Confidence: high. Foto: cay.com.br (site oficial do clube).",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [
+    "https://cay.com.br/wp-content/uploads/2026/07/DSC0060-1-scaled.jpg"
+  ],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

@@ -2,13 +2,13 @@
   "priority": 1,
   "request": {
     "method": "GET",
-    "urlPath": "/v1/places/aaaaaaaa-1111-4111-8111-111111111101"
+    "urlPath": "/v1/places/952f671d-fb18-46eb-a45a-e0897e925650"
   },
   "response": {
     "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "place-ipiranga-cay.json"
+    "bodyFileName": "place-ipiranga-ce-ipiranga-balneario-carlos-joel-nelli.json"
   }
 }

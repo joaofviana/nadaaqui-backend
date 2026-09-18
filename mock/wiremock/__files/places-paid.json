@@ -12,51 +12,62 @@
       "thumbnailUrl": null
     },
     {
-      "id": "aaaaaaaa-1111-4111-8111-111111111101",
-      "name": "Clube Atlético Ypiranga (CAY)",
-      "placeType": "club",
-      "lat": -23.5855,
-      "lng": -46.6095,
-      "priceType": "paid",
-      "totalPass": "unknown",
-      "distanceMeters": null,
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Parque_da_Independ%C3%AAncia.jpg/1280px-Parque_da_Independ%C3%AAncia.jpg"
-    },
-    {
-      "id": "aaaaaaaa-1111-4111-8111-111111111102",
-      "name": "Sesc Ipiranga — Piscina",
+      "id": "b90aa544-aa3c-4d59-a3e8-ff0869b709f0",
+      "name": "Sesc Ipiranga",
       "placeType": "other",
-      "lat": -23.5852,
-      "lng": -46.6108,
+      "lat": -23.5841383,
+      "lng": -46.6080109,
       "priceType": "paid",
       "totalPass": "no",
       "distanceMeters": null,
-      "thumbnailUrl": "https://www.sescsp.org.br/wp-content/uploads/2022/07/sesc-ipiranga-fachada.jpg"
+      "thumbnailUrl": "https://www.sescsp.org.br/wp-content/uploads/2023/11/Piscina-do-Sesc-Ipiranga-Divulgacao.png"
     },
     {
-      "id": "aaaaaaaa-1111-4111-8111-111111111105",
-      "name": "Academia Acqua Raciness",
-      "placeType": "other",
-      "lat": -23.5928,
-      "lng": -46.6015,
+      "id": "63657e49-38cc-4622-af36-0e3809d41d21",
+      "name": "Clube Atlético Ypiranga (CAY)",
+      "placeType": "club",
+      "lat": -23.5767225,
+      "lng": -46.6020269,
       "priceType": "paid",
       "totalPass": "unknown",
       "distanceMeters": null,
-      "thumbnailUrl": "https://images.unsplash.com/photo-1519315901367-f34ff2716bc8?w=1200"
+      "thumbnailUrl": "https://cay.com.br/wp-content/uploads/2026/07/DSC0060-1-scaled.jpg"
     },
     {
-      "id": "aaaaaaaa-1111-4111-8111-111111111106",
-      "name": "Training Up Academia",
+      "id": "553d0911-92dd-41d6-a63c-04c3b156d995",
+      "name": "Aqua School (Go Now Alto do Ipiranga)",
       "placeType": "other",
-      "lat": -23.591,
-      "lng": -46.6055,
+      "lat": -23.5958421,
+      "lng": -46.6086734,
       "priceType": "paid",
       "totalPass": "unknown",
       "distanceMeters": null,
-      "thumbnailUrl": "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200"
+      "thumbnailUrl": "https://www.aquaschool.com.br/wp-content/uploads/2025/04/estrutura2.jpg"
+    },
+    {
+      "id": "c93fcb17-14f5-4483-adce-288fff2a8f07",
+      "name": "Academia Training UP",
+      "placeType": "other",
+      "lat": -23.5874195,
+      "lng": -46.6041896,
+      "priceType": "paid",
+      "totalPass": "unknown",
+      "distanceMeters": null,
+      "thumbnailUrl": null
+    },
+    {
+      "id": "c6d37240-a27f-494c-ad94-b8c752acaec8",
+      "name": "Soul Beach Arena",
+      "placeType": "other",
+      "lat": -23.5713643,
+      "lng": -46.6112691,
+      "priceType": "paid",
+      "totalPass": "no",
+      "distanceMeters": null,
+      "thumbnailUrl": "https://arenasoulbeach.com.br/img/arena-soul-beach-esporte-comida-servico-3.jpg"
     }
   ],
-  "total": 5,
+  "total": 6,
   "limit": 50,
   "offset": 0
 }

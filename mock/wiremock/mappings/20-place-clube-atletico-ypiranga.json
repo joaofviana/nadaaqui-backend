@@ -1,0 +1,14 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/places/63657e49-38cc-4622-af36-0e3809d41d21"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "place-ipiranga-clube-atletico-ypiranga.json"
+  }
+}

@@ -2,13 +2,13 @@
   "priority": 1,
   "request": {
     "method": "GET",
-    "urlPath": "/v1/places/aaaaaaaa-1111-4111-8111-111111111102"
+    "urlPath": "/v1/places/c93fcb17-14f5-4483-adce-288fff2a8f07"
   },
   "response": {
     "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "place-ipiranga-sesc.json"
+    "bodyFileName": "place-ipiranga-academia-training-up.json"
   }
 }

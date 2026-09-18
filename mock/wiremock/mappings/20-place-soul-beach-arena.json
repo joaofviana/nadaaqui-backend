@@ -2,13 +2,13 @@
   "priority": 1,
   "request": {
     "method": "GET",
-    "urlPath": "/v1/places/aaaaaaaa-1111-4111-8111-111111111103"
+    "urlPath": "/v1/places/c6d37240-a27f-494c-ad94-b8c752acaec8"
   },
   "response": {
     "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "place-ipiranga-ce-nelli.json"
+    "bodyFileName": "place-ipiranga-soul-beach-arena.json"
   }
 }

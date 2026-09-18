@@ -1,0 +1,21 @@
+{
+  "id": "b90aa544-aa3c-4d59-a3e8-ff0869b709f0",
+  "name": "Sesc Ipiranga",
+  "placeType": "other",
+  "lat": -23.5841383,
+  "lng": -46.6080109,
+  "priceType": "paid",
+  "totalPass": "no",
+  "distanceMeters": null,
+  "thumbnailUrl": "https://www.sescsp.org.br/wp-content/uploads/2023/11/Piscina-do-Sesc-Ipiranga-Divulgacao.png",
+  "address": "Rua Bom Pastor, 822 – Ipiranga, São Paulo – SP, 04203-000",
+  "description": "Piscina coberta e aquecida; exige Credencial Plena Sesc + exame dermatológico. Em 2025/2026 o site da unidade sinalizou fechamento temporário por manutenção estrutural no túnel técnico — confirmar reabertura antes de ir. Tel. (11) 3340-2000. Confidence: high. Foto: Sesc São Paulo (site oficial / Divulgação).",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [
+    "https://www.sescsp.org.br/wp-content/uploads/2023/11/Piscina-do-Sesc-Ipiranga-Divulgacao.png"
+  ],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

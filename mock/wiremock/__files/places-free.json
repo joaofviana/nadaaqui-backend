@@ -12,18 +12,29 @@
       "thumbnailUrl": null
     },
     {
-      "id": "aaaaaaaa-1111-4111-8111-111111111103",
-      "name": "CE Ipiranga — Balneário Carlos Joel Nelli",
+      "id": "952f671d-fb18-46eb-a45a-e0897e925650",
+      "name": "Centro Esportivo Ipiranga – Balneário Carlos Joel Nelli",
       "placeType": "pool",
-      "lat": -23.5889,
-      "lng": -46.6098,
+      "lat": -23.5802452,
+      "lng": -46.6058969,
       "priceType": "free",
       "totalPass": "no",
       "distanceMeters": null,
-      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Museu_do_Ipiranga_2022.jpg/1280px-Museu_do_Ipiranga_2022.jpg"
+      "thumbnailUrl": "https://expresso.estadao.com.br/sao-paulo/wp-content/uploads/2025/06/20250616_Centro_Espirtivo_Ipiranga_SB-21-scaled.jpg"
+    },
+    {
+      "id": "fc042c45-03a5-4bf6-a860-f5f40d43b0b2",
+      "name": "Centro Esportivo Vila Carioca – Balneário Princesa Isabel",
+      "placeType": "pool",
+      "lat": -23.5989841,
+      "lng": -46.5917089,
+      "priceType": "free",
+      "totalPass": "no",
+      "distanceMeters": null,
+      "thumbnailUrl": null
     }
   ],
-  "total": 2,
+  "total": 3,
   "limit": 50,
   "offset": 0
 }

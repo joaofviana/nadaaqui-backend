@@ -1,0 +1,19 @@
+{
+  "id": "fc042c45-03a5-4bf6-a860-f5f40d43b0b2",
+  "name": "Centro Esportivo Vila Carioca – Balneário Princesa Isabel",
+  "placeType": "pool",
+  "lat": -23.5989841,
+  "lng": -46.5917089,
+  "priceType": "free",
+  "totalPass": "no",
+  "distanceMeters": null,
+  "thumbnailUrl": null,
+  "address": "Rua Campante, 100 – Vila Carioca, São Paulo – SP, 04214-040",
+  "description": "Centro esportivo municipal na Subprefeitura Ipiranga (bairro Vila Carioca, vizinho). Piscina listada pela SEME (ter–dom ~8h–12h e 13h–17h). Carteirinha municipal gratuita. Tel. (11) 2215-5299. Coords aproximadas (geocode da rua; confirmar pin). Confidence: high (existência); medium (coords exatas).",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

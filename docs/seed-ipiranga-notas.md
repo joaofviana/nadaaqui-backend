@@ -1,19 +1,21 @@
-# Seed Ipiranga — notas Backend
+# Seed Ipiranga v2 — notas Backend
 
-## Incluído (5 publicados)
-- CAY, Sesc Ipiranga, CE Nelli, Acqua Raciness, Training Up
-- WireMock: lista + detail com `thumbnailUrl` / `photos[]` (placeholders)
-- QA IN/OUT mantidos
+## Publicados (7)
+1. CE Ipiranga – Balneário Carlos Joel Nelli
+2. Sesc Ipiranga (aviso manutenção no description)
+3. Clube Atlético Ypiranga (CAY)
+4. Aqua School / Go Now (Rua Ribeiro do Amaral, 192)
+5. Academia Training UP (foto null por enquanto)
+6. Soul Beach Arena
+7. CE Vila Carioca – Balneário Princesa Isabel
 
-## Clube Ipiranga — REMOVIDO
-- Po (2026-09-17): **remover** do seed (não só unpublish)
-- Motivo: `ipirangafw.com.br` é Frederico Westphalen/RS, não São Paulo
-- SQL: `delete` do id `aaaaaaaa-1111-4111-8111-111111111104`
+## Não publicados
+- **Dentro D'Água** — confiança baixa (Po)
+- **Run2Fit Vila Gumercindo** / **Acqua Mooca** — entorno opcional; fora até Po/Joãozinho pedirem
 
-## Sesc Ipiranga — piscina
-- Oficialmente **fechada** p/ manutenção estrutural no túnel técnico
-- Mantido no mapa com aviso na `description`
+## Limpeza
+- Remove ids do seed v1 (`aaaaaaaa-1111-4111-8111-…`) inclusive Acqua Raciness
 
 ## Fotos
-- Placeholders Wikimedia / Unsplash / Sesc
-- Produção: Google Places Photo API — **não** hotlinkar tiles do Google Maps
+- Preferência: URLs oficiais do JSON v2
+- Produção futura: Google Places Photo API (sem tiles Maps)

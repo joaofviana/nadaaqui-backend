@@ -1,0 +1,21 @@
+{
+  "id": "c6d37240-a27f-494c-ad94-b8c752acaec8",
+  "name": "Soul Beach Arena",
+  "placeType": "other",
+  "lat": -23.5713643,
+  "lng": -46.6112691,
+  "priceType": "paid",
+  "totalPass": "no",
+  "distanceMeters": null,
+  "thumbnailUrl": "https://arenasoulbeach.com.br/img/arena-soul-beach-esporte-comida-servico-3.jpg",
+  "address": "Av. Dom Pedro I, 700 – Vila Monumento / Ipiranga, São Paulo – SP, 01552-000",
+  "description": "Arena de esportes de areia com day use (areia + piscina), bar/restaurante e quadras. Também listada no Wellhub. Página TotalPass sem parceria ativa no momento da pesquisa. Confidence: high. Foto: arenasoulbeach.com.br (site oficial).",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [
+    "https://arenasoulbeach.com.br/img/arena-soul-beach-esporte-comida-servico-3.jpg"
+  ],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

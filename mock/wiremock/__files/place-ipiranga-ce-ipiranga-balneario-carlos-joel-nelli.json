@@ -1,0 +1,21 @@
+{
+  "id": "952f671d-fb18-46eb-a45a-e0897e925650",
+  "name": "Centro Esportivo Ipiranga – Balneário Carlos Joel Nelli",
+  "placeType": "pool",
+  "lat": -23.5802452,
+  "lng": -46.6058969,
+  "priceType": "free",
+  "totalPass": "no",
+  "distanceMeters": null,
+  "thumbnailUrl": "https://expresso.estadao.com.br/sao-paulo/wp-content/uploads/2025/06/20250616_Centro_Espirtivo_Ipiranga_SB-21-scaled.jpg",
+  "address": "Praça Nami Jafet, 45 – Ipiranga, São Paulo – SP, 04205-050",
+  "description": "Piscina pública coberta/climatizada (formato feijão). Acesso gratuito com carteirinha SEME (RG, foto 3x4, comprovante de residência). Horário típico da piscina: ter–dom ~8h–12h e 13h–17h; confirmar no local. Tel. (11) 2273-1302. Confidence: high. Foto: Estadão Expresso (cobertura da revitalização, jun/2025).",
+  "priceNote": null,
+  "openingHours": null,
+  "photos": [
+    "https://expresso.estadao.com.br/sao-paulo/wp-content/uploads/2025/06/20250616_Centro_Espirtivo_Ipiranga_SB-21-scaled.jpg"
+  ],
+  "ratingAvg": null,
+  "ratingCount": 0,
+  "citySlug": "sao-paulo"
+}

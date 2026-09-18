@@ -2,13 +2,13 @@
   "priority": 1,
   "request": {
     "method": "GET",
-    "urlPath": "/v1/places/aaaaaaaa-1111-4111-8111-111111111106"
+    "urlPath": "/v1/places/fc042c45-03a5-4bf6-a860-f5f40d43b0b2"
   },
   "response": {
     "status": 200,
     "headers": {
       "Content-Type": "application/json"
     },
-    "bodyFileName": "place-ipiranga-training-up.json"
+    "bodyFileName": "place-ipiranga-ce-vila-carioca-princesa-isabel.json"
   }
 }

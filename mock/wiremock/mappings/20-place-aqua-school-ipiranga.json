@@ -1,0 +1,14 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/places/553d0911-92dd-41d6-a63c-04c3b156d995"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "place-ipiranga-aqua-school-ipiranga.json"
+  }
+}
