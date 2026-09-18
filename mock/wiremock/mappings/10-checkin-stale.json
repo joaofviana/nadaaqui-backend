@@ -1,0 +1,19 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPath": "/v1/check-ins",
+    "headers": {
+      "X-Mock-Scenario": {
+        "equalTo": "LOCATION_STALE"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "error-location-stale.json"
+  }
+}

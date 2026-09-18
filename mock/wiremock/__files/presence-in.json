@@ -1,0 +1,13 @@
+{
+  "placeId": "11111111-1111-1111-1111-111111111111",
+  "visibleCount": 1,
+  "hiddenCount": 2,
+  "people": [
+    {
+      "userId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "displayName": "Ana N.",
+      "avatarUrl": null,
+      "checkedInAt": "2026-09-17T21:30:00-03:00"
+    }
+  ]
+}

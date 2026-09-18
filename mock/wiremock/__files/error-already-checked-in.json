@@ -1,0 +1,8 @@
+{
+  "code": "ALREADY_CHECKED_IN",
+  "message": "Você já tem um check-in ativo em outro local.",
+  "details": {
+    "activePlaceId": "11111111-1111-1111-1111-111111111111",
+    "activeCheckInId": "cccccccc-cccc-cccc-cccc-cccccccccccc"
+  }
+}

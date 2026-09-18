@@ -1,0 +1,9 @@
+{
+  "code": "OUT_OF_RANGE",
+  "message": "Você precisa estar mais perto do local para fazer check-in.",
+  "details": {
+    "distanceMeters": 450,
+    "radiusMeters": 150,
+    "placeId": "22222222-2222-2222-2222-222222222222"
+  }
+}

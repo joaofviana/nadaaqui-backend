@@ -1,0 +1,530 @@
+openapi: 3.0.3
+info:
+  title: NadaAqui API
+  version: 1.0.0
+  description: |
+    Contratos Sprint 1+ (Places, Check-in, Config, Presence, Auth).
+    Backend recomendado: Supabase (RPCs + Edge Functions expostos como REST).
+    Raio de check-in e max-age de GPS vêm de GET /v1/config (não hardcode no app).
+servers:
+  - url: https://api.nadaaqui.local/v1
+    description: Produção (placeholder)
+  - url: http://localhost:8080/v1
+    description: Mock local (WireMock/Mockoon)
+tags:
+  - name: Config
+  - name: Auth
+  - name: Places
+  - name: CheckIns
+  - name: Presence
+paths:
+  /config:
+    get:
+      tags: [Config]
+      operationId: getRemoteConfig
+      summary: Configuração remota do app
+      security: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoteConfig'
+              example:
+                checkInRadiusMeters: 150
+                locationMaxAgeSeconds: 60
+                checkInTtlSeconds: 10800
+                presencePollSeconds: 30
+                citySlug: sao-paulo
+  /auth/login:
+    post:
+      tags: [Auth]
+      operationId: login
+      summary: Login e-mail/senha
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Sessão criada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSession'
+        '401':
+          $ref: '#/components/responses/Error'
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      operationId: refresh
+      summary: Renovar access token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refreshToken]
+              properties:
+                refreshToken:
+                  type: string
+      responses:
+        '200':
+          description: Tokens renovados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSession'
+        '401':
+          $ref: '#/components/responses/Error'
+  /auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logout
+      summary: Encerrar sessão
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: Sessão encerrada
+        '401':
+          $ref: '#/components/responses/Error'
+  /auth/me:
+    get:
+      tags: [Auth]
+      operationId: getMe
+      summary: Usuário autenticado + flag de privacidade
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Error'
+  /places:
+    get:
+      tags: [Places]
+      operationId: listPlaces
+      summary: Locais por proximidade (lat/lng/radius) OU bbox + filtros
+      description: |
+        Informe **ou** (`lat`+`lng`+`radiusMeters`) **ou** (`bbox`).
+        Sem GPS no client: usar `citySlug` (cidade piloto) sem lat/lng.
+      security: []
+      parameters:
+        - name: lat
+          in: query
+          schema: { type: number, format: double }
+        - name: lng
+          in: query
+          schema: { type: number, format: double }
+        - name: radiusMeters
+          in: query
+          schema: { type: integer, default: 5000, minimum: 100, maximum: 50000 }
+        - name: bbox
+          in: query
+          description: "minLng,minLat,maxLng,maxLat"
+          schema: { type: string, example: "-46.70,-23.60,-46.60,-23.50" }
+        - name: citySlug
+          in: query
+          schema: { type: string, example: sao-paulo }
+        - name: priceType
+          in: query
+          description: Repetível; free | paid
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/PriceType'
+          style: form
+          explode: true
+        - name: totalPass
+          in: query
+          description: |
+            Repetível; yes | no.
+            `unknown` nunca entra em Aceita nem Não aceita — só aparece se este filtro não for enviado.
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TotalPassFilter'
+          style: form
+          explode: true
+        - name: limit
+          in: query
+          schema: { type: integer, default: 50, minimum: 1, maximum: 100 }
+        - name: offset
+          in: query
+          schema: { type: integer, default: 0, minimum: 0 }
+      responses:
+        '200':
+          description: Lista (ordenada por distância se lat/lng presentes)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceListResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+  /places/{placeId}:
+    get:
+      tags: [Places]
+      operationId: getPlace
+      summary: Ficha do local
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/placeId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceDetail'
+        '404':
+          $ref: '#/components/responses/Error'
+  /check-ins:
+    post:
+      tags: [CheckIns]
+      operationId: createCheckIn
+      summary: Check-in com validação GPS no server
+      description: |
+        Se já existir check-in `active` em **outro** place, o anterior é encerrado (ended)
+        e o novo é criado (alinhado PO).
+        Se já estiver `active` no **mesmo** place, retorna 200 com o existente (idempotente).
+        `ALREADY_CHECKED_IN` só ocorre se `endPrevious=false` e houver active em outro place.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCheckInRequest'
+      responses:
+        '200':
+          description: Check-in ativo (novo ou idempotente)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckInResponse'
+        '201':
+          description: Check-in criado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckInResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '409':
+          description: Conflito (ALREADY_CHECKED_IN quando endPrevious=false)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+  /check-ins/active:
+    get:
+      tags: [CheckIns]
+      operationId: getActiveCheckIn
+      summary: Check-in ativo do usuário (se houver)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Ativo ou null
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkIn:
+                    oneOf:
+                      - $ref: '#/components/schemas/CheckIn'
+                      - type: 'null'
+        '401':
+          $ref: '#/components/responses/Error'
+  /check-ins/{checkInId}/checkout:
+    post:
+      tags: [CheckIns]
+      operationId: checkout
+      summary: Checkout manual
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: checkInId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Encerrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckIn'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /places/{placeId}/presence:
+    get:
+      tags: [Presence]
+      operationId: getWhoIsHere
+      summary: Quem está aqui agora (respeita privacy)
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/placeId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresenceResponse'
+        '404':
+          $ref: '#/components/responses/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    placeId:
+      name: placeId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  responses:
+    Error:
+      description: Erro padrão
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorBody'
+  schemas:
+    ErrorCode:
+      type: string
+      enum:
+        - VALIDATION_ERROR
+        - UNAUTHORIZED
+        - FORBIDDEN
+        - NOT_FOUND
+        - OUT_OF_RANGE
+        - ALREADY_CHECKED_IN
+        - LOCATION_STALE
+        - CONFLICT
+        - INTERNAL
+    ErrorBody:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          $ref: '#/components/schemas/ErrorCode'
+        message:
+          type: string
+          description: Mensagem PT-BR segura para UI
+        details:
+          type: object
+          additionalProperties: true
+          description: Ex. distanceMeters, radiusMeters, maxAgeSeconds
+    RemoteConfig:
+      type: object
+      required:
+        - checkInRadiusMeters
+        - locationMaxAgeSeconds
+        - checkInTtlSeconds
+        - presencePollSeconds
+        - citySlug
+      properties:
+        checkInRadiusMeters:
+          type: integer
+          minimum: 50
+          maximum: 500
+          default: 150
+          description: Front sugeriu 80–150; default 150 até Joãozinho fechar
+        locationMaxAgeSeconds:
+          type: integer
+          default: 60
+        checkInTtlSeconds:
+          type: integer
+          default: 10800
+          description: 3h
+        presencePollSeconds:
+          type: integer
+          default: 30
+        citySlug:
+          type: string
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string, format: password, minLength: 6 }
+    AuthSession:
+      type: object
+      required: [accessToken, refreshToken, expiresIn, user]
+      properties:
+        accessToken: { type: string }
+        refreshToken: { type: string }
+        expiresIn: { type: integer, description: segundos }
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      required: [id, email, displayName, showInPresence]
+      properties:
+        id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        displayName: { type: string }
+        avatarUrl: { type: string, nullable: true }
+        showInPresence:
+          type: boolean
+          description: Toggle HU-07; default true
+    PriceType:
+      type: string
+      enum: [free, paid]
+    PriceTypeFull:
+      type: string
+      enum: [free, paid, unknown]
+    TotalPass:
+      type: string
+      enum: [yes, no, unknown]
+    TotalPassFilter:
+      type: string
+      enum: [yes, no]
+    PlaceType:
+      type: string
+      enum: [pool, beach, lake, river, club, other]
+    PlaceSummary:
+      type: object
+      required:
+        - id
+        - name
+        - placeType
+        - lat
+        - lng
+        - priceType
+        - totalPass
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        placeType: { $ref: '#/components/schemas/PlaceType' }
+        lat: { type: number, format: double }
+        lng: { type: number, format: double }
+        priceType: { $ref: '#/components/schemas/PriceTypeFull' }
+        totalPass: { $ref: '#/components/schemas/TotalPass' }
+        distanceMeters:
+          type: integer
+          nullable: true
+          description: Presente quando a query usou lat/lng
+        thumbnailUrl: { type: string, nullable: true }
+    PlaceDetail:
+      allOf:
+        - $ref: '#/components/schemas/PlaceSummary'
+        - type: object
+          properties:
+            address: { type: string, nullable: true }
+            description: { type: string, nullable: true }
+            priceNote: { type: string, nullable: true }
+            openingHours:
+              type: object
+              nullable: true
+              additionalProperties: true
+            photos:
+              type: array
+              items: { type: string }
+            ratingAvg: { type: number, nullable: true }
+            ratingCount: { type: integer, default: 0 }
+            citySlug: { type: string }
+    PlaceListResponse:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaceSummary'
+        total: { type: integer }
+        limit: { type: integer }
+        offset: { type: integer }
+    CreateCheckInRequest:
+      type: object
+      required: [placeId, lat, lng, accuracyMeters, capturedAt]
+      properties:
+        placeId: { type: string, format: uuid }
+        lat: { type: number, format: double }
+        lng: { type: number, format: double }
+        accuracyMeters:
+          type: number
+          description: Precisão GPS reportada pelo device
+        capturedAt:
+          type: string
+          format: date-time
+          description: Timestamp da fix; server rejeita se mais velha que locationMaxAgeSeconds
+        endPrevious:
+          type: boolean
+          default: true
+          description: Se false e houver active noutro place → 409 ALREADY_CHECKED_IN
+    CheckIn:
+      type: object
+      required:
+        - id
+        - placeId
+        - userId
+        - status
+        - startedAt
+        - expiresAt
+        - visibleInPresence
+      properties:
+        id: { type: string, format: uuid }
+        placeId: { type: string, format: uuid }
+        userId: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [active, ended]
+        startedAt: { type: string, format: date-time }
+        expiresAt: { type: string, format: date-time }
+        endedAt: { type: string, format: date-time, nullable: true }
+        distanceMeters: { type: integer }
+        visibleInPresence: { type: boolean }
+    CheckInResponse:
+      type: object
+      required: [checkIn]
+      properties:
+        checkIn:
+          $ref: '#/components/schemas/CheckIn'
+        endedPreviousCheckInId:
+          type: string
+          format: uuid
+          nullable: true
+    PresencePerson:
+      type: object
+      required: [userId, displayName]
+      properties:
+        userId: { type: string, format: uuid }
+        displayName: { type: string }
+        avatarUrl: { type: string, nullable: true }
+        checkedInAt: { type: string, format: date-time }
+    PresenceResponse:
+      type: object
+      required: [placeId, visibleCount, hiddenCount, people]
+      properties:
+        placeId: { type: string, format: uuid }
+        visibleCount: { type: integer }
+        hiddenCount:
+          type: integer
+          description: Ocultos no total anônimo (+N); sem identidade
+        people:
+          type: array
+          items:
+            $ref: '#/components/schemas/PresencePerson'
+          description: Só perfis com visibleInPresence=true

@@ -1,0 +1,7 @@
+{
+  "code": "LOCATION_STALE",
+  "message": "Sua localização está desatualizada. Atualize o GPS e tente de novo.",
+  "details": {
+    "maxAgeSeconds": 60
+  }
+}

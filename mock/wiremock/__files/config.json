@@ -1,0 +1,7 @@
+{
+  "checkInRadiusMeters": 150,
+  "locationMaxAgeSeconds": 60,
+  "checkInTtlSeconds": 10800,
+  "presencePollSeconds": 30,
+  "citySlug": "sao-paulo"
+}

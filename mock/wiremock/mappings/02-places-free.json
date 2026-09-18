@@ -1,0 +1,15 @@
+{
+  "priority": 2,
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/places",
+    "queryParameters": {
+      "priceType": { "equalTo": "free" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "places-free.json"
+  }
+}

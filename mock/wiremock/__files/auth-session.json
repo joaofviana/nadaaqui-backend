@@ -1,0 +1,12 @@
+{
+  "accessToken": "mock-access-token",
+  "refreshToken": "mock-refresh-token",
+  "expiresIn": 3600,
+  "user": {
+    "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    "email": "qa@nadaaqui.app",
+    "displayName": "QA Tester",
+    "avatarUrl": null,
+    "showInPresence": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "name": "Praia Artificial Parque (OUT raio)",
+      "placeType": "beach",
+      "lat": -23.5540,
+      "lng": -46.6350,
+      "priceType": "free",
+      "totalPass": "no",
+      "distanceMeters": 450,
+      "thumbnailUrl": null
+    }
+  ],
+  "total": 1,
+  "limit": 50,
+  "offset": 0
+}

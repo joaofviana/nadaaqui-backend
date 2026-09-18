@@ -1,0 +1,19 @@
+{
+  "priority": 2,
+  "request": {
+    "method": "POST",
+    "urlPath": "/v1/check-ins",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.[?(@.placeId == '22222222-2222-2222-2222-222222222222')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "error-out-of-range.json"
+  }
+}

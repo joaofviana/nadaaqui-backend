@@ -1,0 +1,22 @@
+{
+  "id": "11111111-1111-1111-1111-111111111111",
+  "name": "Piscina Clube Centro (IN raio)",
+  "placeType": "pool",
+  "lat": -23.5509,
+  "lng": -46.6335,
+  "priceType": "paid",
+  "totalPass": "yes",
+  "distanceMeters": null,
+  "thumbnailUrl": null,
+  "address": "Rua Exemplo 100, Centro",
+  "description": "Piscina olímpica; Ideal pra QA de check-in DENTRO do raio.",
+  "priceNote": "Diária ~R$ 40",
+  "openingHours": {
+    "mon-fri": "06:00-22:00",
+    "sat-sun": "08:00-20:00"
+  },
+  "photos": [],
+  "ratingAvg": 4.5,
+  "ratingCount": 12,
+  "citySlug": "sao-paulo"
+}

@@ -1,0 +1,468 @@
+{
+  "uuid": "a0000000-0000-0000-0000-000000000001",
+  "lastMigration": 29,
+  "name": "NadaAqui v1 Mock",
+  "endpointPrefix": "v1",
+  "latency": 0,
+  "port": 8080,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "r01",
+      "type": "http",
+      "documentation": "Config",
+      "method": "get",
+      "endpoint": "config",
+      "responses": [
+        {
+          "uuid": "rr01",
+          "body": "{\n  \"checkInRadiusMeters\": 150,\n  \"locationMaxAgeSeconds\": 60,\n  \"checkInTtlSeconds\": 10800,\n  \"presencePollSeconds\": 30,\n  \"citySlug\": \"piloto\"\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "r02",
+      "type": "http",
+      "documentation": "Places all",
+      "method": "get",
+      "endpoint": "places",
+      "responses": [
+        {
+          "uuid": "rr02a",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": \"22222222-2222-2222-2222-222222222222\",\n      \"name\": \"Praia Artificial Parque (OUT raio)\",\n      \"placeType\": \"beach\",\n      \"lat\": -23.5540,\n      \"lng\": -46.6350,\n      \"priceType\": \"free\",\n      \"totalPass\": \"no\",\n      \"distanceMeters\": 450,\n      \"thumbnailUrl\": null\n    }\n  ],\n  \"total\": 1,\n  \"limit\": 50,\n  \"offset\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "filter free",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "priceType",
+              "value": "free",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "rr02b",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"name\": \"Piscina Clube Centro (IN raio)\",\n      \"placeType\": \"pool\",\n      \"lat\": -23.5509,\n      \"lng\": -46.6335,\n      \"priceType\": \"paid\",\n      \"totalPass\": \"yes\",\n      \"distanceMeters\": 80,\n      \"thumbnailUrl\": null\n    }\n  ],\n  \"total\": 1,\n  \"limit\": 50,\n  \"offset\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "filter paid",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "priceType",
+              "value": "paid",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "rr02c",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"name\": \"Piscina Clube Centro (IN raio)\",\n      \"placeType\": \"pool\",\n      \"lat\": -23.5509,\n      \"lng\": -46.6335,\n      \"priceType\": \"paid\",\n      \"totalPass\": \"yes\",\n      \"distanceMeters\": 80,\n      \"thumbnailUrl\": null\n    }\n  ],\n  \"total\": 1,\n  \"limit\": 50,\n  \"offset\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "filter totalPass yes",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "totalPass",
+              "value": "yes",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "rr02d",
+          "body": "{\n  \"items\": [\n    {\n      \"id\": \"11111111-1111-1111-1111-111111111111\",\n      \"name\": \"Piscina Clube Centro (IN raio)\",\n      \"placeType\": \"pool\",\n      \"lat\": -23.5509,\n      \"lng\": -46.6335,\n      \"priceType\": \"paid\",\n      \"totalPass\": \"yes\",\n      \"distanceMeters\": 80,\n      \"thumbnailUrl\": null\n    },\n    {\n      \"id\": \"22222222-2222-2222-2222-222222222222\",\n      \"name\": \"Praia Artificial Parque (OUT raio)\",\n      \"placeType\": \"beach\",\n      \"lat\": -23.5540,\n      \"lng\": -46.6350,\n      \"priceType\": \"free\",\n      \"totalPass\": \"no\",\n      \"distanceMeters\": 450,\n      \"thumbnailUrl\": null\n    }\n  ],\n  \"total\": 2,\n  \"limit\": 50,\n  \"offset\": 0\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "default",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "r03",
+      "type": "http",
+      "documentation": "Place IN detail",
+      "method": "get",
+      "endpoint": "places/11111111-1111-1111-1111-111111111111",
+      "responses": [
+        {
+          "uuid": "rr03",
+          "body": "{\n  \"id\": \"11111111-1111-1111-1111-111111111111\",\n  \"name\": \"Piscina Clube Centro (IN raio)\",\n  \"placeType\": \"pool\",\n  \"lat\": -23.5509,\n  \"lng\": -46.6335,\n  \"priceType\": \"paid\",\n  \"totalPass\": \"yes\",\n  \"distanceMeters\": null,\n  \"thumbnailUrl\": null,\n  \"address\": \"Rua Exemplo 100, Centro\",\n  \"description\": \"Piscina olímpica; Ideal pra QA de check-in DENTRO do raio.\",\n  \"priceNote\": \"Diária ~R$ 40\",\n  \"openingHours\": {\"mon-fri\": \"06:00-22:00\", \"sat-sun\": \"08:00-20:00\"},\n  \"photos\": [],\n  \"ratingAvg\": 4.5,\n  \"ratingCount\": 12,\n  \"citySlug\": \"piloto\"\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "r04",
+      "type": "http",
+      "documentation": "Place OUT detail",
+      "method": "get",
+      "endpoint": "places/22222222-2222-2222-2222-222222222222",
+      "responses": [
+        {
+          "uuid": "rr04",
+          "body": "{\n  \"id\": \"22222222-2222-2222-2222-222222222222\",\n  \"name\": \"Praia Artificial Parque (OUT raio)\",\n  \"placeType\": \"beach\",\n  \"lat\": -23.5540,\n  \"lng\": -46.6350,\n  \"priceType\": \"free\",\n  \"totalPass\": \"no\",\n  \"distanceMeters\": null,\n  \"thumbnailUrl\": null,\n  \"address\": \"Av. Parque 500\",\n  \"description\": \"Local gratuito; Ideal pra QA de check-in FORA do raio (OUT_OF_RANGE).\",\n  \"priceNote\": null,\n  \"openingHours\": null,\n  \"photos\": [],\n  \"ratingAvg\": null,\n  \"ratingCount\": 0,\n  \"citySlug\": \"piloto\"\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "r05",
+      "type": "http",
+      "documentation": "Check-in",
+      "method": "post",
+      "endpoint": "check-ins",
+      "responses": [
+        {
+          "uuid": "rr05a",
+          "body": "{\n  \"code\": \"LOCATION_STALE\",\n  \"message\": \"Sua localização está desatualizada. Atualize o GPS e tente de novo.\",\n  \"details\": {\n    \"maxAgeSeconds\": 60\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "LOCATION_STALE",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "X-Mock-Scenario",
+              "value": "LOCATION_STALE",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "rr05b",
+          "body": "{\n  \"code\": \"ALREADY_CHECKED_IN\",\n  \"message\": \"Você já tem um check-in ativo em outro local.\",\n  \"details\": {\n    \"activePlaceId\": \"11111111-1111-1111-1111-111111111111\",\n    \"activeCheckInId\": \"cccccccc-cccc-cccc-cccc-cccccccccccc\"\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 409,
+          "label": "ALREADY_CHECKED_IN",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "X-Mock-Scenario",
+              "value": "ALREADY_CHECKED_IN",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "rr05c",
+          "body": "{\n  \"code\": \"OUT_OF_RANGE\",\n  \"message\": \"Você precisa estar mais perto do local para fazer check-in.\",\n  \"details\": {\n    \"distanceMeters\": 450,\n    \"radiusMeters\": 150,\n    \"placeId\": \"22222222-2222-2222-2222-222222222222\"\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "OUT_OF_RANGE",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "placeId",
+              "value": "22222222-2222-2222-2222-222222222222",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "rr05d",
+          "body": "{\n  \"checkIn\": {\n    \"id\": \"cccccccc-cccc-cccc-cccc-cccccccccccc\",\n    \"placeId\": \"11111111-1111-1111-1111-111111111111\",\n    \"userId\": \"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\n    \"status\": \"active\",\n    \"startedAt\": \"2026-09-17T22:00:00-03:00\",\n    \"expiresAt\": \"2026-09-18T01:00:00-03:00\",\n    \"endedAt\": null,\n    \"distanceMeters\": 80,\n    \"visibleInPresence\": true\n  },\n  \"endedPreviousCheckInId\": null\n}\n",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "OK IN",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "r06",
+      "type": "http",
+      "documentation": "Presence IN",
+      "method": "get",
+      "endpoint": "places/11111111-1111-1111-1111-111111111111/presence",
+      "responses": [
+        {
+          "uuid": "rr06",
+          "body": "{\n  \"placeId\": \"11111111-1111-1111-1111-111111111111\",\n  \"visibleCount\": 1,\n  \"hiddenCount\": 2,\n  \"people\": [\n    {\n      \"userId\": \"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb\",\n      \"displayName\": \"Ana N.\",\n      \"avatarUrl\": null,\n      \"checkedInAt\": \"2026-09-17T21:30:00-03:00\"\n    }\n  ]\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "r07",
+      "type": "http",
+      "documentation": "Login",
+      "method": "post",
+      "endpoint": "auth/login",
+      "responses": [
+        {
+          "uuid": "rr07",
+          "body": "{\n  \"accessToken\": \"mock-access-token\",\n  \"refreshToken\": \"mock-refresh-token\",\n  \"expiresIn\": 3600,\n  \"user\": {\n    \"id\": \"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\n    \"email\": \"qa@nadaaqui.app\",\n    \"displayName\": \"QA Tester\",\n    \"avatarUrl\": null,\n    \"showInPresence\": true\n  }\n}\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "r01"
+    },
+    {
+      "type": "route",
+      "uuid": "r02"
+    },
+    {
+      "type": "route",
+      "uuid": "r03"
+    },
+    {
+      "type": "route",
+      "uuid": "r04"
+    },
+    {
+      "type": "route",
+      "uuid": "r05"
+    },
+    {
+      "type": "route",
+      "uuid": "r06"
+    },
+    {
+      "type": "route",
+      "uuid": "r07"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ]
+}
