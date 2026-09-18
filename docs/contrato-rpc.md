@@ -17,6 +17,9 @@ Headers: `apikey`, `Authorization: Bearer {anon|access_token}`, `Content-Type: a
 | Checkout | `checkout_check_in(p_check_in_id)` | authenticated |
 | Presença | `who_is_here(p_place_id)` | anon, authenticated |
 | Expirar TTL | `expire_check_ins()` | **service_role** only |
+| Meu perfil | `get_my_profile()` | authenticated |
+| Perfil público | `get_public_profile(p_handle, p_user_id)` | anon, authenticated |
+| Editar perfil | `update_my_profile(p_patch)` | authenticated |
 
 `nearby_places` devolve linhas **snake_case**. O client mapeia para camelCase.
 `get_place` devolve JSON camelCase com `distanceMeters: null` — distância é calculada no app.
@@ -39,6 +42,9 @@ Exceções Postgres `P0001`: `UNAUTHORIZED`, `NOT_FOUND`.
 
 ## Auth
 
+Ver `docs/auth.md`.
+
 - Guest (`anon`): lê places publicados + `who_is_here` + config.
 - Check-in exige JWT de `auth.users`.
+- Signup cria `public.profiles` via trigger `handle_new_user`.
 - `check_ins` crus: só o dono (`authenticated` + `user_id = auth.uid()`). Presença pública só via `who_is_here`.
