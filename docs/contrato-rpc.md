@@ -53,8 +53,9 @@ Exceções Postgres `P0001`: `UNAUTHORIZED`, `NOT_FOUND`, `VALIDATION_ERROR`.
 
 ## Auth
 
-Ver `docs/auth.md`.
+Ver `docs/auth.md` para fluxos completos de signup/login/logout/recover.
 
 - Guest (`anon`): lê places publicados + `who_is_here` + config + feed + ranking.
 - Check-in / post / kudo / finish_swim exigem JWT.
 - Signup cria `public.profiles` via trigger `handle_new_user`.
+- Logout: chamar `POST /auth/v1/logout` diretamente (não é RPC).

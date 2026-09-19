@@ -89,12 +89,16 @@ paths:
     post:
       tags: [Auth]
       operationId: logout
-      summary: Encerrar sessão
+      summary: Encerrar sessão (GoTrue)
+      description: |
+        Chama Supabase GoTrue POST /auth/v1/logout diretamente.
+        Revoga access_token e refresh_token no servidor.
+        App deve limpar session local após sucesso.
       security:
         - bearerAuth: []
       responses:
         '204':
-          description: Sessão encerrada
+          description: Sessão encerrada com sucesso
         '401':
           $ref: '#/components/responses/Error'
   /auth/me:

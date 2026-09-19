@@ -1,0 +1,8 @@
+{
+  "priority": 1,
+  "request": { "method": "POST", "urlPath": "/v1/auth/logout" },
+  "response": {
+    "status": 204,
+    "headers": { "Content-Type": "application/json" }
+  }
+}
