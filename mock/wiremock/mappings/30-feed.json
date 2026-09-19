@@ -1,0 +1,5 @@
+{
+  "priority": 5,
+  "request": { "method": "POST", "urlPath": "/rest/v1/rpc/list_feed" },
+  "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "bodyFileName": "feed.json" }
+}

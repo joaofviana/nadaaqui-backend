@@ -11,11 +11,18 @@ Headers: `apikey`, `Authorization: Bearer {anon|access_token}`, `Content-Type: a
 | Uso | Função | Grants |
 |---|---|---|
 | Config | `get_remote_config()` | anon, authenticated |
-| Lista | `nearby_places(p_lat, p_lng, p_radius_meters, p_bbox, p_city_slug, p_price_types, p_total_pass, p_limit, p_offset)` | anon, authenticated |
+| Lista | `nearby_places(...)` | anon, authenticated |
 | Ficha | `get_place(p_place_id)` | anon, authenticated |
-| Check-in | `create_check_in(p_place_id, p_lat, p_lng, p_accuracy_meters, p_captured_at, p_end_previous)` | authenticated |
+| Check-in | `create_check_in(...)` | authenticated |
 | Checkout | `checkout_check_in(p_check_in_id)` | authenticated |
+| Encerrar nado | `finish_swim(p_check_in_id, p_meters, p_body)` | authenticated |
 | Presença | `who_is_here(p_place_id)` | anon, authenticated |
+| Feed | `list_feed(p_limit, p_offset)` | anon, authenticated |
+| Post | `create_feed_post(p_body, p_kind, p_place_id, p_stars)` | authenticated |
+| Kudo | `toggle_kudo(p_post_id)` | authenticated |
+| Meus nados | `list_my_sessions(p_limit, p_offset)` | authenticated |
+| Ranking tanque | `place_board(p_place_id, p_limit)` | anon, authenticated |
+| Heat horário | `place_hourly_heat(p_place_id)` | anon, authenticated |
 | Expirar TTL | `expire_check_ins()` | **service_role** only |
 | Meu perfil | `get_my_profile()` | authenticated |
 | Perfil público | `get_public_profile(p_handle, p_user_id)` | anon, authenticated |
@@ -23,6 +30,10 @@ Headers: `apikey`, `Authorization: Bearer {anon|access_token}`, `Content-Type: a
 
 `nearby_places` devolve linhas **snake_case**. O client mapeia para camelCase.
 `get_place` devolve JSON camelCase com `distanceMeters: null` — distância é calculada no app.
+
+## Encerrar nado
+
+`finish_swim` faz checkout do check-in ativo, grava `swim_sessions` e publica um post `kind=session` no feed.
 
 ## Erros de `create_check_in`
 
@@ -38,13 +49,12 @@ HTTP 200 com corpo:
 }
 ```
 
-Exceções Postgres `P0001`: `UNAUTHORIZED`, `NOT_FOUND`.
+Exceções Postgres `P0001`: `UNAUTHORIZED`, `NOT_FOUND`, `VALIDATION_ERROR`.
 
 ## Auth
 
 Ver `docs/auth.md`.
 
-- Guest (`anon`): lê places publicados + `who_is_here` + config.
-- Check-in exige JWT de `auth.users`.
+- Guest (`anon`): lê places publicados + `who_is_here` + config + feed + ranking.
+- Check-in / post / kudo / finish_swim exigem JWT.
 - Signup cria `public.profiles` via trigger `handle_new_user`.
-- `check_ins` crus: só o dono (`authenticated` + `user_id = auth.uid()`). Presença pública só via `who_is_here`.
