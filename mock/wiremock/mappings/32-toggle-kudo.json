@@ -1,0 +1,9 @@
+{
+  "priority": 5,
+  "request": { "method": "POST", "urlPath": "/rest/v1/rpc/toggle_kudo" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": { "postId": "00000000-0000-4000-8000-000000000101", "liked": true, "likes": 13 }
+  }
+}

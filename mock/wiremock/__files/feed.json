@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "id": "00000000-0000-4000-8000-000000000101",
+      "kind": "session",
+      "body": "Nadou 42 min · 1200 m em Piscina Municipal",
+      "placeId": "00000000-0000-4000-8000-000000000001",
+      "placeName": "Piscina Municipal",
+      "durationSeconds": 2520,
+      "meters": 1200,
+      "createdAt": "2026-09-19T16:00:00Z",
+      "likes": 12,
+      "liked": false,
+      "author": { "id": "00000000-0000-4000-8000-000000000010", "displayName": "Marina Costa", "avatarUrl": null }
+    }
+  ]
+}

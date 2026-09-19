@@ -1,0 +1,5 @@
+{
+  "priority": 5,
+  "request": { "method": "POST", "urlPath": "/rest/v1/rpc/finish_swim" },
+  "response": { "status": 200, "headers": { "Content-Type": "application/json" }, "bodyFileName": "finish-swim.json" }
+}
