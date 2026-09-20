@@ -29,7 +29,7 @@ create or replace function public.nearby_places(
   p_city_slug text default null,
   p_price_types public.price_type[] default null,
   p_total_pass public.total_pass[] default null,
-  p_limit int default 50,
+  p_limit int default 100,
   p_offset int default 0
 )
 returns table (
@@ -57,8 +57,8 @@ declare
   v_max_lat double precision;
   v_city text;
 begin
-  if p_limit is null or p_limit < 1 then p_limit := 50; end if;
-  if p_limit > 100 then p_limit := 100; end if;
+  if p_limit is null or p_limit < 1 then p_limit := 100; end if;
+  if p_limit > 200 then p_limit := 200; end if;
   if p_offset is null or p_offset < 0 then p_offset := 0; end if;
 
   select city_slug into v_city from public.app_config where id = 1;
