@@ -52,7 +52,8 @@ select public.expire_check_ins();
 ```
 
 ## Testes de domínio
-Checklist em [`supabase/tests/check_in.sql`](tests/check_in.sql).
+Checklist em [`supabase/scripts/debug/check_in.sql`](scripts/debug/check_in.sql) (script manual, não é pgTAP).
+Testes automáticos pgTAP ficam em `supabase/tests/*.test.sql` (rodam com `supabase test db`).
 
 ## Seed QA
 Mesmos UUIDs do mock. GPS WireMock: `-23.5505, -46.6333`.
