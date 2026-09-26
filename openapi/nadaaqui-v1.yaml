@@ -285,7 +285,10 @@ paths:
       tags: [Presence]
       operationId: getWhoIsHere
       summary: Quem está aqui agora (respeita privacy)
-      security: []
+      description: |
+        RPC live `who_is_here`: exige login depois da migration 20260926140100
+        (até ela ser aplicada em produção, visitante sem login ainda consegue chamar).
+      security: [{ bearerAuth: [] }]
       parameters:
         - $ref: '#/components/parameters/placeId'
       responses:
@@ -337,7 +340,8 @@ paths:
       tags: [Profiles]
       operationId: getPublicProfile
       summary: Perfil de outro (HU-16) — omite campos privados
-      security: []
+      description: RPC live `get_public_profile` — só usuário logado (migration 20260926140000).
+      security: [{ bearerAuth: [] }]
       parameters:
         - name: handle
           in: path
@@ -356,7 +360,8 @@ paths:
       tags: [Profiles]
       operationId: listProfilePublicCheckIns
       summary: Check-ins públicos no perfil (não feed)
-      security: []
+      description: RPC live `list_profile_public_check_ins` — só usuário logado (migration 20260926140000).
+      security: [{ bearerAuth: [] }]
       parameters:
         - name: userId
           in: path

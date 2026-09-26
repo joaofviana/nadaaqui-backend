@@ -26,7 +26,9 @@ Migrations (ordem do timestamp):
 ## RPCs ↔ app live
 Ver [`docs/contrato-rpc.md`](../docs/contrato-rpc.md). OpenAPI `/v1` é só o mock.
 
-Auth: Supabase Auth (e-mail/senha) + `profiles`. Guest = `anon` lê places + `who_is_here` + config.
+Auth: Supabase Auth (e-mail/senha) + `profiles`. Guest = `anon` só executa `get_remote_config`, `nearby_places` e `get_place` (até a migration `20260926140100` também `who_is_here`, `place_board`, `place_hourly_heat`).
+
+**Permissões de RPC:** funções novas no `public` nascem sem EXECUTE para PUBLIC/anon (default privileges da migration `20260926140000`). Toda RPC nova precisa de `grant execute ... to authenticated` (e `anon` só se for de visitante). Funções de trigger/helpers internos: não dar grant.
 
 ## Cron TTL
 No projeto hosted com `pg_cron`, a migration `20260918020100_expire_cron.sql` agenda:

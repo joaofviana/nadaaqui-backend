@@ -4,7 +4,7 @@
 
 begin;
 
-select plan(64);
+select plan(67);
 
 -- ---------------------------------------------------------------------------
 -- Dados de teste (como postgres)
@@ -148,7 +148,7 @@ select results_eq(
   'list_notifications(A) continua funcionando para o próprio A');
 select throws_ok(
   $$select * from public.list_notifications('bbbbbbbb-0000-4000-8000-00000000000b')$$,
-  '42501', 'FORBIDDEN', 'list_notifications(B) é recusado para A');
+  'P0001', 'FORBIDDEN', 'list_notifications(B) é recusado para A');
 
 select lives_ok(
   $$select public.mark_notification_read('ffffffff-0000-4000-8000-0000000000fb')$$,
@@ -196,10 +196,18 @@ select throws_ok(
 -- RPCs em nome de outro usuário
 select throws_ok(
   $$select public.follow_user('bbbbbbbb-0000-4000-8000-00000000000b', 'cccccccc-0000-4000-8000-00000000000c')$$,
-  '42501', 'FORBIDDEN', 'follow_user em nome do B é recusado');
+  'P0001', 'FORBIDDEN', 'follow_user em nome do B é recusado');
 select throws_ok(
   $$select public.unfollow_user('cccccccc-0000-4000-8000-00000000000c', 'bbbbbbbb-0000-4000-8000-00000000000b')$$,
-  '42501', 'FORBIDDEN', 'unfollow_user em nome do C é recusado');
+  'P0001', 'FORBIDDEN', 'unfollow_user em nome do C é recusado');
+
+-- alvo inválido no follow_user
+select throws_ok(
+  $$select public.follow_user(null, null)$$,
+  'P0001', 'VALIDATION_ERROR', 'follow_user com alvo null dá VALIDATION_ERROR');
+select throws_ok(
+  $$select public.follow_user(null, '99999999-0000-4000-8000-000000000099')$$,
+  'P0001', 'VALIDATION_ERROR', 'follow_user com alvo inexistente dá VALIDATION_ERROR');
 
 -- contadores do próprio perfil
 update public.profiles
@@ -276,6 +284,16 @@ select is(
   (select posts_count from public.profiles where id = 'aaaaaaaa-0000-4000-8000-00000000000a'),
   2, 'trigger de posts ainda atualiza posts_count');
 
+reset role;
+
+-- ---------------------------------------------------------------------------
+-- authenticated sem usuário no JWT (sub vazio): UNAUTHORIZED com P0001
+-- ---------------------------------------------------------------------------
+set local role authenticated;
+set local request.jwt.claims = '{"role":"authenticated"}';
+select throws_ok(
+  'select * from public.list_notifications()',
+  'P0001', 'UNAUTHORIZED', 'list_notifications sem usuário dá UNAUTHORIZED (P0001)');
 reset role;
 
 -- ---------------------------------------------------------------------------
