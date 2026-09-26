@@ -1,15 +1,41 @@
 name: ci
+
 on:
   pull_request:
+    branches: [main, "mesa-dev/**"]
   push:
     branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  sql-present:
+  database:
+    name: migrations + testes SQL
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: migrations exist
-        run: |
-          test -f supabase/migrations/20260917220100_schema.sql
-          test -f supabase/migrations/20260918020000_harden_rls.sql
-          test -f docs/contrato-rpc.md
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      # Sobe só o Postgres do Supabase local, numa máquina descartável do GitHub
+      - name: Subir banco local
+        run: supabase db start
+
+      # Aplica TODAS as migrations do zero (+ seed), como num banco novo.
+      # Se alguma migration quebrar, o PR fica vermelho antes de chegar em produção.
+      - name: Migrations do zero
+        run: supabase db reset
+
+      # Lint das funções SQL (plpgsql_check). Por enquanto só mostra os avisos,
+      # não bloqueia o PR. Depois de limpar o legado, trocar para --fail-on error.
+      - name: Lint do schema (informativo)
+        run: supabase db lint --level warning
+
+      # Testes pgTAP em supabase/tests (RLS, RPCs, pontos, streak, ranking)
+      - name: Testes SQL
+        run: supabase test db
