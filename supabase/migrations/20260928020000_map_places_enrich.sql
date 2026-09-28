@@ -1,7 +1,15 @@
 -- Mapa / Explorar: enriquece nearby_places com dados reais (sem inventar).
--- Campos extras: rating_avg, rating_count, address, presence_count (check-ins ativos).
--- Novo filtro opcional p_query (nome).
--- RPC place_map_stats: presença + último check-in (para ficha).
+-- Remove overload anterior (assinatura antiga) para evitar ambiguidade no PostgREST.
+
+drop function if exists public.nearby_places(
+  double precision, double precision, int, text, text,
+  public.price_type[], public.total_pass[], int, int
+);
+
+drop function if exists public.nearby_places(
+  double precision, double precision, int, text, text,
+  public.price_type[], public.total_pass[], int, int, text
+);
 
 create or replace function public.nearby_places(
   p_lat double precision default null,
@@ -137,7 +145,6 @@ grant execute on function public.nearby_places(
   public.price_type[], public.total_pass[], int, int, text
 ) to anon, authenticated;
 
--- Stats discretas para a ficha do mapa (presença + último check-in)
 create or replace function public.place_map_stats(p_place_id uuid)
 returns table (
   place_id uuid,
